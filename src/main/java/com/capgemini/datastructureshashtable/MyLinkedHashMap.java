@@ -51,5 +51,15 @@ public class MyLinkedHashMap<K,V> {
 			
 		}
 	}
+	public K remove(K key) {
+		int index=this.getBucketIndex(key);
+		MyLinkedList<K> myLinkedList=this.myBucketArray.get(index);
+		if(myLinkedList==null)
+			return null;
+		else {
+			MyMapNode deletedNode=(MyMapNode)myLinkedList.deleteNodeWithKey(key);
+			return (K)deletedNode.getKey();
+		}
+	}
 	
 }

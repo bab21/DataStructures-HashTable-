@@ -82,6 +82,24 @@ public class MyLinkedList<K> {
 		return size;	
 	}
 	
+	public INode deleteNodeWithKey(K key) {
+		INode iteratorNode=head;
+		if(iteratorNode.getKey().equals(key)) {
+			return pop();
+		}
+		else if(this.tail.getKey().equals(key))
+		{
+			return popLast();
+		}
+		while(iteratorNode!=null && !iteratorNode.getNext().getKey().equals(key))
+			iteratorNode=iteratorNode.getNext();
+		
+		INode deletedNode=iteratorNode.getNext();
+		iteratorNode.setNext(deletedNode.getNext());
+		deletedNode.setNext(null);
+		return deletedNode;
+	}
+	
 	public void printMyLinkedList() {
 		StringBuffer myNodes=new StringBuffer("My Nodes....");
 		INode tempNode=head;
